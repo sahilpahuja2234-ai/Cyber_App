@@ -13,20 +13,20 @@ Built entirely in Python using [Pygame](https://www.pygame.org/), the game featu
 > 🚧 **This project is actively under development. More levels covering broader cybersecurity threats are coming soon!**
 
 ---
-##📸 Screenshots
-<img width="426" height="240" alt="Video Project" src="https://github.com/user-attachments/assets/4fe8ff22-1fb0-4999-b7f2-625fbc878f14" />
+## 📸 Screenshots
+<img width="320" height="180" alt="Video Project" src="https://github.com/user-attachments/assets/4fe8ff22-1fb0-4999-b7f2-625fbc878f14" />
 
-<img width="1602" height="940" alt="image" src="https://github.com/user-attachments/assets/53f6e456-65d6-4715-bb72-917dd1300aa5" />
+<img width="480" height="282" alt="image" src="https://github.com/user-attachments/assets/53f6e456-65d6-4715-bb72-917dd1300aa5" />
 
-<img width="1602" height="940" alt="image" src="https://github.com/user-attachments/assets/f0d590ac-2a45-4c9b-bed9-716529fe1b36" />
+<img width="480" height="282" alt="image" src="https://github.com/user-attachments/assets/f0d590ac-2a45-4c9b-bed9-716529fe1b36" />
 
 ---
 ## 🕹️ Gameplay
 
 ### Level 1 — Email Inspection ✅ Available Now
-<img width="1602" height="940" alt="image" src="https://github.com/user-attachments/assets/5fd6f298-8b5a-458e-824e-4b9c2d7d2ffa" />
+<img width="480" height="282" alt="image" src="https://github.com/user-attachments/assets/5fd6f298-8b5a-458e-824e-4b9c2d7d2ffa" />
 
-<img width="1602" height="940" alt="image" src="https://github.com/user-attachments/assets/ed9b4863-ebe3-453e-86c2-3e15a927a902" />
+<img width="480" height="282" alt="image" src="https://github.com/user-attachments/assets/ed9b4863-ebe3-453e-86c2-3e15a927a902" />
 
 
 - You are presented with **9 emails** in a simulated Gmail-style inbox.
