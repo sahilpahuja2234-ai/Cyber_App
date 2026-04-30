@@ -1,7 +1,6 @@
 import pygame as pg
-from numpy.ma.core import append
 
-from menu import NEON_CYAN, PURE_WHITE
+from menu import NEON_CYAN, PURE_WHITE, draw_box
 
 
 class LevelOne:
@@ -41,6 +40,7 @@ class LevelOne:
             pg.Rect(220, 660, 950, 55)
         ]
         self.check_email_for_score = []
+        self.check_back_for_score = []
         self.emails = [
             (
                 "HR Dept",
@@ -252,6 +252,10 @@ class LevelOne:
         self.Instruction_read = False
         self.selected_email = None
 
+        self.feedback_timer = 0
+        self.feedback_text = ""
+        self.feedback_color = (0, 0, 0)
+
     def opened_email_view(self, i, surface):
         surface.fill((10, 10, 20))
         surface.blit(self.email_view, (0, 0))
@@ -279,13 +283,35 @@ class LevelOne:
         if email[7] is not None:
             surface.blit(self.open_attach_font.render(f"📎  {email[7]}", True, (220, 80, 80)), (260, 620))
 
-    def report_scoring_level1(self, screen, i,s):
+    def report_scoring_level1(self,i, s):
+        if i in s:
+            return
         viewed_email = self.emails[i]
         s.append(i)
-        if viewed_email[9] is not None and viewed_email[9] =="report" and i not in s:
+        if viewed_email[9] == "report":
             self.score.add(20)
-        elif viewed_email[9] is not None and viewed_email[9] !="report" and i not in s:
-            self.score.deduct(20)
+            self.feedback_text = "+20  Correct Report!"
+            self.feedback_color = (0, 180, 120)
+        else:
+            self.score.deduct(10)
+            self.feedback_text = "-10  Wrong Report!"
+            self.feedback_color = (180, 40, 40)
+        self.feedback_timer = 120  # show for 120 frames (~2 seconds at 60fps)
+
+    def back_scoring_level1(self, i, s):
+        if i in s:
+            return
+        viewed_email = self.emails[i]
+        s.append(i)
+        if viewed_email[8] == False:  # safe email, back = correct
+            self.score.add(20)
+            self.feedback_text = "+20  Safe Email!"
+            self.feedback_color = (0, 180, 120)
+        else:  # suspicious email, back = wrong
+            self.score.deduct(10)
+            self.feedback_text = "-10  Should've Reported!"
+            self.feedback_color = (180, 40, 40)
+        self.feedback_timer = 120
 
     def handle_event(self, event):
         if event.type == pg.KEYDOWN:
@@ -294,76 +320,74 @@ class LevelOne:
                     self.Instruction_read = True
 
         if event.type == pg.MOUSEBUTTONDOWN:
-            # First dismiss instructions
             if not self.Instruction_read:
                 self.Instruction_read = True
-                return  # stop here, don't also open an email
+                return
 
-            # If an email is open, check back button
             if self.selected_email is not None:
-                back_rect = pg.Rect(245, 185, 40, 40)
-                report_rect = pg.Rect(1185,180 , 40, 40)
+                back_rect = pg.Rect(245, 185, 120, 50)
+                report_rect = pg.Rect(1185, 180, 120, 50)
+
                 if back_rect.collidepoint(event.pos):
+                    self.back_scoring_level1(self.selected_email, self.check_back_for_score)
                     self.selected_email = None
 
-                if report_rect.collidepoint(event.pos):
-                    #level_1_score()
+                elif report_rect.collidepoint(event.pos):
+                    self.report_scoring_level1( self.selected_email, self.check_email_for_score)
                     self.selected_email = None
                 return
 
-            # Otherwise check row clicks
             for i, rect in enumerate(self.rows_rect):
                 if rect.collidepoint(event.pos):
                     self.selected_email = i
 
     def update(self):
         self.timer += 1
-
         if self.timer > 15:
             self.timer = 0
             if self.frame_index < len(self.frames) - 1:
                 self.frame_index += 1
 
+        if self.feedback_timer > 0:
+            self.feedback_timer -= 1  # ← add this
+
     def draw(self, surface):
         surface.fill((0, 0, 0))
 
-        # Show instructions if they haven't been clicked yet
         if not self.Instruction_read:
-
-            surface.fill((10, 10, 20))  # dark cyber background
-
+            surface.fill((10, 10, 20))
             for i, line in enumerate(self.instructions):
                 if i == 0:
                     text_surface = self.instruction_font.render(line, True, (0, 255, 180))
                 else:
                     text_surface = self.level_1_font.render(line, True, (200, 200, 200))
-
                 surface.blit(text_surface, (200, 150 + i * 40))
+            return
 
-            return  # ⛔ VERY IMPORTANT (stops game rendering underneath)
-    # Draw the main game/inbox only AFTER instructions are read
-        # Check if email is open FIRST
         if self.selected_email is not None:
             self.opened_email_view(self.selected_email, surface)
-            return  # don't draw inbox underneath
+            return
+
+        # Inbox view
         surface.blit(self.frames[self.frame_index], (0, 0))
         mouse_pos = pg.mouse.get_pos()
 
         for i, rect in enumerate(self.rows_rect):
-            # Hover effect for emails
             if rect.collidepoint(mouse_pos):
                 pg.draw.rect(surface, (0, 120, 140), rect)
-
-
-
             email = self.emails[i]
+            surface.blit(self.level_1_font.render(email[0], True, (200, 230, 245)), (rect.x + 60, rect.y + 10))
+            surface.blit(self.level_1_font.render(email[1], True, (200, 230, 245)), (rect.x + 240, rect.y + 10))
+            surface.blit(self.level_1_font.render(email[2], True, (140, 180, 200)), (rect.x + 240, rect.y + 30))
+            surface.blit(self.level_1_font.render(email[3], True, (110, 150, 170)), (rect.x + 880, rect.y + 15))
 
-            sender_surface = self.level_1_font.render(email[0], True, (200, 230, 245))
-            subject_surface = self.level_1_font.render(email[1], True, (200, 230, 245))
-            preview_surface = self.level_1_font.render(email[2], True, (140, 180, 200))
-            time_surface = self.level_1_font.render(email[3], True, (110, 150, 170))
-
-            surface.blit(sender_surface, (rect.x + 60, rect.y + 10))
-            surface.blit(subject_surface, (rect.x + 240, rect.y + 10))
-            surface.blit(preview_surface, (rect.x + 240, rect.y + 30))
-            surface.blit(time_surface, (rect.x + 880, rect.y + 15))
+        # ← feedback box shown on inbox, visible after email closes
+        if self.feedback_timer > 0:
+            draw_box(
+                surface,
+                color=self.feedback_color,
+                rect=pg.Rect(480, 300, 320, 90),
+                text=self.feedback_text,
+                text_color=PURE_WHITE,
+                font=self.open_sender_font
+            )
