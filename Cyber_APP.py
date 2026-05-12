@@ -3,6 +3,8 @@ from sys import exit
 from menu import main_menu
 from Score import SCORE
 from level_1 import LevelOne
+from Transition import CyberTransition
+
 pg.init()
 screen = pg.display.set_mode((1280, 720))
 pg.display.set_caption('CYber App')
@@ -29,17 +31,25 @@ exit_clicked = False
 border_anim_pos = 0
 level = None
 s = SCORE()
+
+# ── Transition setup ──────────────────────────────────────────────────────────
+transition = CyberTransition("Graphic/cyber_app_transition.png", fps=60)
+transitioning = False  # True while the animation is playing
+# ─────────────────────────────────────────────────────────────────────────────
+
 while game_is_on:
-    border_anim_pos += 6  # speed
+    border_anim_pos += 6
+
     for event in pg.event.get():
         if event.type == pg.QUIT:
             game_is_on = False
             pg.quit()
             exit()
-        # If the game is running, route all events directly to the level
-        if game_active:
+
+        # Block game input while transitioning
+        if game_active and not transitioning:
             level.handle_event(event)
-        #Click handling
+
         if event.type == pg.MOUSEBUTTONDOWN:
             if start_box and start_box.collidepoint(event.pos):
                 start_pressed_time = pg.time.get_ticks()
@@ -49,13 +59,13 @@ while game_is_on:
                 exit_pressed_time = pg.time.get_ticks()
                 exit_clicked = True
 
-    # Handle delayed start
+    # Handle delayed start → kick off transition instead of jumping straight in
     if start_clicked:
         if pg.time.get_ticks() - start_pressed_time > PRESS_DURATION:
-            game_active = True
-            level = LevelOne(s)
+            transitioning = True
+            transition.reset()
             start_clicked = False
-            start_box,exit_box = None,None
+            start_box, exit_box = None, None
 
     # Handle delayed exit
     if exit_clicked:
@@ -63,14 +73,35 @@ while game_is_on:
             pg.quit()
             exit()
 
-    # Draw
-    if game_active:
+    # ── Draw ─────────────────────────────────────────────────────────────────
+    if transitioning:
+        # Draw whatever is underneath first (menu or game), then overlay
+        if game_active:
+            level.update()
+            level.draw(screen)
+        else:
+            s.save()
+            start_box, exit_box = main_menu(screen, main_menu_font, border_anim_pos,start_pressed_time, exit_pressed_time, PRESS_DURATION)
 
-        level.update()# Game screen
+        transition.update()
+        transition.draw(screen)  # draws on top of everything
+
+        # Halfway through → load the level so it's ready when transition ends
+        if transition.frame_index == transition.FRAME_COUNT // 2 and not game_active:
+            game_active = True
+            level = LevelOne(s)
+
+        # Transition finished
+        if transition.done:
+            transitioning = False
+
+    elif game_active:
+        level.update()
         level.draw(screen)
+
     else:
         s.save()
-        start_box, exit_box = main_menu(screen,main_menu_font,border_anim_pos,start_pressed_time,exit_pressed_time,PRESS_DURATION)
+        start_box, exit_box = main_menu(screen, main_menu_font, border_anim_pos,start_pressed_time, exit_pressed_time, PRESS_DURATION)
 
     pg.display.update()
-    clock.tick(60) #Max Fps
+    clock.tick(60)
