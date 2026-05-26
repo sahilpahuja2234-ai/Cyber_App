@@ -59,7 +59,7 @@ class LevelTwo(LevelOne):
             "",
             "Click anywhere or press SPACE to begin."
         ]
-        def handle_event(self, event):
+    def handle_event(self, event):
             if event.type == pg.KEYDOWN:
                 if event.key == pg.K_SPACE:
                     if not self.Instruction_read:
@@ -70,14 +70,13 @@ class LevelTwo(LevelOne):
                     self.Instruction_read = True
                     return
             pass
-        def update(self):
+    def update(self):
             pass
-        def draw(self, surface):
+    def draw(self, surface):
             surface.fill((0, 0, 0))
             if not self.Instruction_read:
                 surface.fill((10, 10, 20))
-
-                y = 10
+                y = 0
                 for line in self.instructions:
                     if line == self.instructions[0]:
                         text_surface = self.instruction_font.render(line, True, (0, 255, 180))
@@ -97,5 +96,6 @@ class LevelTwo(LevelOne):
                         text_surface = self.level_font.render(line, True, (200, 200, 200))
                         surface.blit(text_surface, (200, y))
                         y += 18
+
                 return
             pass
