@@ -17,7 +17,7 @@ class LevelOne:
         self.report_button = pg.image.load('Graphic/Level_1_graphics/Report_button.png').convert_alpha()
 
         # Load fonts ONCE in __init__ to save performance
-        self.level_1_font = pg.font.Font('Font/Level_1_font/OpenSans-Bold.ttf', 15)
+        self.level_font = pg.font.Font('Font/Level_1_font/OpenSans-Bold.ttf', 15)
         self.instruction_font = pg.font.Font('Font/Level_1_font/OpenSans_Condensed-Regular.ttf', 70)
         self.open_sender_font = pg.font.Font('Font/Level_1_font/OpenSans_Condensed-Regular.ttf', 20)
         self.open_subject_font = pg.font.Font('Font/Level_1_font/OpenSans_Condensed-Regular.ttf', 28)
@@ -360,7 +360,7 @@ class LevelOne:
                 if i == 0:
                     text_surface = self.instruction_font.render(line, True, (0, 255, 180))
                 else:
-                    text_surface = self.level_1_font.render(line, True, (200, 200, 200))
+                    text_surface = self.level_font.render(line, True, (200, 200, 200))
                 surface.blit(text_surface, (200, 150 + i * 40))
             return
 
@@ -376,10 +376,10 @@ class LevelOne:
             if rect.collidepoint(mouse_pos):
                 pg.draw.rect(surface, (0, 120, 140), rect)
             email = self.emails[i]
-            surface.blit(self.level_1_font.render(email[0], True, (200, 230, 245)), (rect.x + 60, rect.y + 10))
-            surface.blit(self.level_1_font.render(email[1], True, (200, 230, 245)), (rect.x + 240, rect.y + 10))
-            surface.blit(self.level_1_font.render(email[2], True, (140, 180, 200)), (rect.x + 240, rect.y + 30))
-            surface.blit(self.level_1_font.render(email[3], True, (110, 150, 170)), (rect.x + 880, rect.y + 15))
+            surface.blit(self.level_font.render(email[0], True, (200, 230, 245)), (rect.x + 60, rect.y + 10))
+            surface.blit(self.level_font.render(email[1], True, (200, 230, 245)), (rect.x + 240, rect.y + 10))
+            surface.blit(self.level_font.render(email[2], True, (140, 180, 200)), (rect.x + 240, rect.y + 30))
+            surface.blit(self.level_font.render(email[3], True, (110, 150, 170)), (rect.x + 880, rect.y + 15))
 
         # ← feedback box shown on inbox, visible after email closes
         if self.feedback_timer > 0:

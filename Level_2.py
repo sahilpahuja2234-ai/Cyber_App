@@ -77,7 +77,7 @@ class LevelTwo(LevelOne):
             if not self.Instruction_read:
                 surface.fill((10, 10, 20))
 
-                y = 40
+                y = 10
                 for line in self.instructions:
                     if line == self.instructions[0]:
                         text_surface = self.instruction_font.render(line, True, (0, 255, 180))
@@ -90,11 +90,11 @@ class LevelTwo(LevelOne):
                         surface.blit(text_surface, (200, y))
                         y += 28
                     elif line.startswith("  "):
-                        text_surface = self.level_1_font.render(line, True, (180, 180, 100))
+                        text_surface = self.level_font.render(line, True, (180, 180, 100))
                         surface.blit(text_surface, (220, y))  # extra indent
                         y += 18
                     else:
-                        text_surface = self.level_1_font.render(line, True, (200, 200, 200))
+                        text_surface = self.level_font.render(line, True, (200, 200, 200))
                         surface.blit(text_surface, (200, y))
                         y += 18
                 return
