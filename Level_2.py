@@ -76,7 +76,7 @@ class LevelTwo(LevelOne):
             surface.fill((0, 0, 0))
             if not self.Instruction_read:
                 surface.fill((10, 10, 20))
-                y = 0
+                y = 20
                 for line in self.instructions:
                     if line == self.instructions[0]:
                         text_surface = self.instruction_font.render(line, True, (0, 255, 180))
