@@ -89,7 +89,7 @@ while game_is_on:
         # Halfway through → load the level so it's ready when transition ends
         if transition.frame_index == transition.FRAME_COUNT // 2 and not game_active:
             game_active = True
-            level = LevelTwo(s)
+            level = LevelOne(s)
 
         # Transition finished
         if transition.done:
