@@ -23,7 +23,7 @@ Built entirely in Python using [Pygame](https://www.pygame.org/), the game featu
 ---
 ## 🕹️ Gameplay
 
-### Level 1 — Email Inspection ✅ Available Now
+### Level 1 — Suspicious Links & URLs ✅ Available Now
 <img width="480" height="282" alt="image" src="https://github.com/user-attachments/assets/5fd6f298-8b5a-458e-824e-4b9c2d7d2ffa" />
 
 <img width="480" height="282" alt="image" src="https://github.com/user-attachments/assets/ed9b4863-ebe3-453e-86c2-3e15a927a902" />
@@ -57,11 +57,9 @@ CyberApp is a growing project. Here's what's currently available and what's plan
 
 | Level | Title | Status |
 |-------|-------|--------|
-| Level 1 | Email Inspection | ✅ Available |
-| Level 2 | Suspicious Links & URLs | 🔜 Coming Soon |
-| Level 3 | Social Engineering Scenarios | 🔜 Coming Soon |
-| Level 4 | Malware & Download Traps | 🔜 Coming Soon |
-| Level 5 | Password Security & Data Leaks | 🔜 Coming Soon |
+| Level 1 | Suspicious Links & URLs | ✅ Available |
+| Level 2 | Email Inspection | ✅ Available |
+
 
 > 💡 Have a level idea? Feel free to open an [Issue](../../issues) or submit a Pull Request!
 
