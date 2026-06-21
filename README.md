@@ -67,9 +67,7 @@ Your task is to inspect each listing and determine which download can be trusted
 ### Scenario
 
 You are an employee reviewing emails in your inbox.
-
 Some messages are legitimate business communications while others are phishing attempts designed to steal information or infect systems.
-
 Players must decide whether to:
 
 - Keep the email
