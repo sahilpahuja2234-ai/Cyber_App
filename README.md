@@ -65,26 +65,30 @@ CyberApp is a growing project. Here's what's currently available and what's plan
 
 > 💡 Have a level idea? Feel free to open an [Issue](../../issues) or submit a Pull Request!
 
+# 📂 Project Structure
 ---
 
-## 📂 Project Structure
+```text
 
-```
 CyberApp/
 │
-├── Cyber_APP.py          # Main entry point — game loop & state manager
-├── menu.py               # Main menu screen with animated neon border
-├── level_1.py            # Level 1 logic, email data, scoring & rendering
-├── Score.py              # Score class — tracks current & high score
+├── Cyber_APP.py
+├── base_level.py
+├── menu.py
+├── level_1.py
+├── level_2.py
+├── Transition.py
+├── Score.py
 │
 ├── Font/
-│   ├── Main_menu_font/   # Rajdhani-Bold.ttf
-│   └── Level_1_font/     # OpenSans variants
+│   ├── Main_menu_font/
+│   └── Level_1_font/
 │
 ├── Graphic/
-│   └── Level_1_graphics/ # All PNG assets (frames, buttons, email view)
+│   ├── Level_1_graphics/
+│   └── level_2_graphics/
 │
-└── score.txt             # Auto-generated high score file
+└── score.txt
 ```
 
 ---
