@@ -1,75 +1,148 @@
-# 🛡️ CyberApp — Email Phishing Detection Game
+# 🛡️ CyberApp - Gamified Cybersecurity Awareness Platform
 
-> A cybersecurity awareness game built with Python & Pygame, where you act as an employee navigating a simulated inbox and deciding which emails are safe or suspicious.
+CyberApp is an interactive cybersecurity awareness game designed to help users recognize and respond to common cyber threats through realistic, hands-on scenarios.
 
----
-
-## 🎮 About The Project
-
-**CyberApp** is an interactive educational game designed to teach players how to identify phishing emails, social engineering attacks, and suspicious digital communications. Players open emails in a simulated inbox, inspect sender details, attachments, and content, then decide to **keep** or **report** each one.
-
-Built entirely in Python using [Pygame](https://www.pygame.org/), the game features a sleek dark cyberpunk UI theme with animated neon borders and custom fonts.
-
-> 🚧 **This project is actively under development. More levels covering broader cybersecurity threats are coming soon!**
-
----
-## 📸 Screenshots
-<img width="320" height="180" alt="Video Project" src="https://github.com/user-attachments/assets/4fe8ff22-1fb0-4999-b7f2-625fbc878f14" />
-
-<img width="480" height="282" alt="image" src="https://github.com/user-attachments/assets/53f6e456-65d6-4715-bb72-917dd1300aa5" />
-
-<img width="480" height="282" alt="image" src="https://github.com/user-attachments/assets/f0d590ac-2a45-4c9b-bed9-716529fe1b36" />
-
----
-## 🕹️ Gameplay
-
-### Level 1 — Email Inspection ✅ Available Now
-<img width="480" height="282" alt="image" src="https://github.com/user-attachments/assets/5fd6f298-8b5a-458e-824e-4b9c2d7d2ffa" />
-
-<img width="480" height="282" alt="image" src="https://github.com/user-attachments/assets/ed9b4863-ebe3-453e-86c2-3e15a927a902" />
-
-
-- You are presented with **9 emails** in a simulated Gmail-style inbox.
-- Open each email and analyze:
-  - **Sender address** (internal vs external domain)
-  - **Email body** content and urgency cues
-  - **Suspicious attachments** (e.g., `.exe` files)
-  - **External links** or threats
-- Take action:
-  - ✅ **Back** — Safe email, dismiss it
-  - 🚩 **Report** — Flag it as suspicious
-
-### Scoring
-| Action | Points |
-|--------|--------|
-| Correctly reporting a phishing email | **+20** |
-| Correctly dismissing a safe email | **+20** |
-| Wrong report on a legitimate email | **-10** |
-| Missing a suspicious email | **-10** |
-
-High scores are saved locally in `score.txt`.
+Traditional cybersecurity training is often passive and difficult to retain. CyberApp transforms learning into an engaging experience by placing players inside simulated environments where they must identify threats, make decisions, and understand the consequences of their actions.
 
 ---
 
-## 🗺️ Roadmap
+## 🎯 Project Objective
 
-CyberApp is a growing project. Here's what's currently available and what's planned:
+The primary goal of CyberApp is to improve cybersecurity awareness through gamification.
 
-| Level | Title | Status |
-|-------|-------|--------|
-| Level 1 | Email Inspection | ✅ Available |
-| Level 2 | Suspicious Links & URLs | 🔜 Coming Soon |
-| Level 3 | Social Engineering Scenarios | 🔜 Coming Soon |
-| Level 4 | Malware & Download Traps | 🔜 Coming Soon |
-| Level 5 | Password Security & Data Leaks | 🔜 Coming Soon |
+Instead of reading theory, users actively interact with realistic scenarios such as:
 
-> 💡 Have a level idea? Feel free to open an [Issue](../../issues) or submit a Pull Request!
+- Phishing Emails
+- Malicious Downloads
+- Fake Torrents
+- Social Engineering Attempts
+- Suspicious Attachments
+- Online Scams
+
+By learning through experience, players develop practical skills that can be applied in real-world situations.
+
+---
+
+## 🎮 Gameplay
+
+CyberApp presents cybersecurity challenges in the form of levels.
+
+Each level focuses on a specific threat category and requires players to analyze information, identify warning signs, and make security decisions.
+
+Correct decisions reward points, while unsafe choices simulate the consequences of poor cybersecurity practices.
+
+---
+
+# 🔍 Level 1 – Torrent Inspection
+
+### Scenario
+
+You are attempting to download a movie from a torrent website.
+
+Among multiple torrent listings, only one is safe.
+
+Your task is to inspect each listing and determine which download can be trusted.
+
+### Skills Learned
+
+- Torrent safety analysis
+- Uploader verification
+- Seeder-to-leecher evaluation
+- Fake release detection
+- Malware download awareness
+- Dangerous file extension recognition
+
+### Features
+
+- Interactive torrent marketplace
+- Realistic torrent metadata
+- Dynamic scoring system
+- Security-focused feedback
+- Cybersecurity awareness training
+
+---
+
+# 📧 Level 2 – Email Inspection
+
+### Scenario
+
+You are an employee reviewing emails in your inbox.
+
+Some messages are legitimate business communications while others are phishing attempts designed to steal information or infect systems.
+
+Players must decide whether to:
+
+- Keep the email
+- Report the email
+
+### Skills Learned
+
+- Phishing detection
+- Social engineering awareness
+- Suspicious attachment identification
+- Sender verification
+- Link inspection
+- Email security best practices
+
+### Features
+
+- Interactive inbox simulation
+- Realistic email conversations
+- Attachment analysis
+- Decision-based scoring
+- Threat recognition training
+
+---
+
+# 🏆 Scoring System
+
+Players earn points by making secure decisions.
+
+| Action | Result |
+|----------|----------|
+| Correct Security Decision | Positive Score |
+| Unsafe Decision | Score Deduction |
+
+Scores are stored locally, encouraging replayability and continuous improvement.
+
+---
+
+# 🧠 Cybersecurity Concepts Covered
+
+CyberApp teaches practical concepts including:
+
+- Phishing Detection
+- Malware Awareness
+- Social Engineering Recognition
+- Safe Download Practices
+- Threat Identification
+- Digital Risk Assessment
+- Cyber Hygiene
+- Security Decision Making
+
+---
+
+# ⚙️ Technical Details
+
+### Built With
+
+- Python
+- Pygame
+
+### Core Components
+
+- Modular Level System
+- Shared Game Framework
+- Interactive UI
+- Persistent High Score Storage
+- Animated Transitions
+- Event-Driven Gameplay
+
+---
 
 # 📂 Project Structure
----
 
 ```text
-
 CyberApp/
 │
 ├── Cyber_APP.py
@@ -81,105 +154,38 @@ CyberApp/
 ├── Score.py
 │
 ├── Font/
-│   ├── Main_menu_font/
-│   └── Level_1_font/
 │
 ├── Graphic/
-│   ├── Level_1_graphics/
-│   └── level_2_graphics/
 │
 └── score.txt
 ```
 
 ---
 
-## ⚙️ Requirements
+# 🎓 Educational Impact
 
-- Python 3.8+
-- Pygame
+CyberApp was created to address a common challenge in cybersecurity education:
 
-Install dependencies:
+**Traditional training is often boring and ineffective.**
 
-```bash
-pip install pygame
-```
+CyberApp uses gamification to create an engaging learning experience where users actively identify threats instead of passively reading about them.
 
----
-
-## 🚀 How to Run
-
-```bash
-git clone https://github.com/sahilpahuja2234-ai/Cyber_App.git
-cd Cyber_App
-python Cyber_APP.py
-```
+The platform encourages critical thinking, improves threat recognition skills, and helps users build habits that contribute to safer online behavior.
 
 ---
 
-## 🖥️ Technical Details
+# 🚀 Key Highlights
 
-- **Resolution:** 1280 × 720 (fixed window)
-- **FPS:** 60 (capped via `clock.tick(60)`)
-- **Font:** Rajdhani Bold (menu), Open Sans (gameplay)
-- **Rendering:** Pygame surface blitting with custom animated border drawing
-- **State management:** `game_active` flag switches between menu and level
-
-### Key Modules
-
-| File | Responsibility |
-|------|---------------|
-| `Cyber_APP.py` | Game loop, event routing, screen state |
-| `menu.py` | Animated border, Start/Exit buttons, color constants |
-| `level_1.py` | `LevelOne` class — email data, open/inspect/report logic |
-| `Score.py` | `SCORE` class — add, deduct, save high score to file |
+- Gamified Cybersecurity Learning
+- Realistic Attack Scenarios
+- Interactive Decision Making
+- Practical Threat Recognition
+- Beginner-Friendly
+- Educational and Engaging
+- Real-World Security Awareness
 
 ---
 
-## 🔒 Cybersecurity Concepts Covered
+## 🔐 Learn Security by Experiencing It
 
-### Currently Taught (Level 1)
-- **Phishing email identification**
-- **Suspicious sender domain detection**
-- **Social engineering red flags** (urgency, threats, unknown senders)
-- **Malicious attachment recognition** (`.exe` files in emails)
-- **External link danger awareness**
-
-### Coming in Future Levels
-- URL spoofing and lookalike domains
-- Credential harvesting page detection
-- Ransomware delivery mechanisms
-- Safe password practices and breach response
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! If you'd like to add a new level, improve UI, or suggest new cybersecurity scenarios:
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/level-2`)
-3. Commit your changes (`git commit -m 'Add Level 2: Suspicious Links'`)
-4. Push to the branch (`git push origin feature/level-2`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-Fonts used under the [SIL Open Font License (OFL)](OFL.txt).
-
-Project code is open for educational use.
-
----
-
-## 🙌 Acknowledgements
-
-- Built with [Pygame](https://www.pygame.org/)
-- Fonts: [Rajdhani](https://fonts.google.com/specimen/Rajdhani), [Open Sans](https://fonts.google.com/specimen/Open+Sans) via Google Fonts
-- Inspired by real-world cybersecurity awareness training platforms
-
----
-
-<p align="center">
-  <i>🔐 Stay cyber-aware. More levels coming soon!</i>
-</p>
+CyberApp turns cybersecurity awareness into an interactive experience where every decision matters.
